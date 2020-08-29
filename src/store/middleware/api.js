@@ -29,7 +29,8 @@ const api = ({ store, dispatch }) => (next) => async (action) => {
       },
       baseURL,
       url,
-      data: data || params,
+      data,
+      params,
       method,
     });
     if (toastOnsuccess)

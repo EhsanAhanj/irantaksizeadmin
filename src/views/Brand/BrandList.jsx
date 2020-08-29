@@ -9,7 +9,6 @@ const BrandList = () => {
   const dispatch = useDispatch();
   const { list } = useSelector((state) => state.brands);
   useEffect(() => {
-    console.log(list.length > 1);
     if (list.length < 1) dispatch(loadBrands());
   }, []);
 

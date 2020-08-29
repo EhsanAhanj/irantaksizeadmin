@@ -19,15 +19,18 @@ const slice = createSlice({
     ADD_BRANDS: (brands, action) => {
       if (action.payload) {
         brands.list = [...brands.list, ...action.payload];
-        brands.isLoading = false;
       }
+      brands.isLoading = false;
     },
     UPDATE_BRAND: (brands, action) => {
       let index = brands.list.findIndex(
         (obj) => obj._id === action.payload.data._id
       );
-
-      brands.list[index].name = "Laila";
+      brands.list[index].en_name = action.payload.data.en_name;
+      brands.list[index].fa_name = action.payload.data.fa_name;
+      brands.list[index].description = action.payload.data.description;
+      brands.list[index].icon = action.payload.data.icon;
+      brands.isLoading = false;
     },
     REMOVE_BRAND: (brands, action) => {
       const newBrands = brands.list.filter(
@@ -111,6 +114,7 @@ export const updateBrand = (brand) => {
     },
     toastOnsuccess: { type: "success" },
     onStart: slice.actions.ON_START.type,
+    onSuccess: slice.actions.UPDATE_BRAND.type,
     onError: slice.actions.ON_FAILD.type,
   });
 };

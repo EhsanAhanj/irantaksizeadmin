@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import { Card, Divider, Image, Placeholder } from "semantic-ui-react";
-import { Row, Col, Button } from "reactstrap";
+import { Row, Col, Button, Table } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMerchant } from "../../store/merchants";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import AppInput from "../../components/Forms/AppInput";
+import FormikImage from "../../components/Forms/FormikImage";
 import FormikAutoSuggest from "../../components/Forms/FormikAutoSuggest";
+import AppModal from "../../components/common/AppModal";
+
 const initialValues = {
   merchantPage: "",
   merchantPhone1: "",
@@ -22,14 +25,43 @@ const validationSchema = Yup.object().shape({
     .min(6, "شماره صحیح نیست")
     .required("شماره تماس الزامی است"),
 });
-const onSubmit = (values) => console.log(values, "valire");
 
 const MerchantNew = (props) => {
   const [loading, setloading] = useState(true);
   const [card, setcard] = useState({});
   const [existInDataBase, setExistInDataBase] = useState(false);
-  const dispatch = useDispatch();
   const { list } = useSelector((state) => state.merchants);
+  const [modal, setModal] = useState(false);
+  const [modalProps, setModalProps] = useState({
+    modalTitle: "",
+    modalBody: "",
+    modalOnSubmit: null,
+  });
+  const dispatch = useDispatch();
+
+  const toggle = () => setModal(!modal);
+
+  let newValues;
+  const onSubmit = (values) => {
+    setModalProps({
+      modalTitle: "توجه",
+      modalBody: "مایل به اضافه کردن پیج این فروشنده هستید؟؟؟",
+      modalOnSubmit: doSubmit,
+    });
+    newValues = values;
+    toggle();
+    return;
+  };
+  const doSubmit = () => {
+    // dispatch(addBrand(newValues));
+    console.log({ newValues });
+    newValues = {};
+    setModalProps({
+      modalTitle: "",
+      modalBody: "",
+      modalOnSubmit: null,
+    });
+  };
 
   useEffect(() => {
     if (!card.username) return;
@@ -70,13 +102,35 @@ const MerchantNew = (props) => {
                 </Placeholder.Paragraph>
               </Placeholder>
             ) : (
-              <div className="merchant-card-data">
-                <div>نام کاربری {card.username}</div>
-                <div>نام کامل {card.full_name}</div>
-                <div>آی دی اینستاگرام {card.pk}</div>
-                <div>اکانت پرایوت {card.is_private ? "هست" : "نیست"}</div>
+              <>
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>نام کاربری </th>
+                      <th>{card.username}</th>
+                    </tr>
+                    <tr>
+                      <th>نام کامل</th>
+                      <th>{card.full_name}</th>
+                    </tr>
+                    <tr>
+                      <th>آی دی اینستاگرام </th>
+                      <th>{card.pk}</th>
+                    </tr>
+                    <tr>
+                      <th>اکانت پرایوت</th>
+                      <th>{card.is_private ? "هست" : "نیست"}</th>
+                    </tr>
+                  </tbody>
+                </Table>
                 <Button color="info">جزییات صفحه </Button>
-              </div>
+              </>
             )}
           </Card.Content>
         </Col>
@@ -116,15 +170,28 @@ const MerchantNew = (props) => {
                   label="آی دی تلگرام"
                   placeholder="آی دی تلگرام"
                 />
-                <AppInput
+                <FormikImage
                   name="idCarts"
                   label="تاییدیه مدارک شناسایی کارت ملی و شناسنامه و تعهد محضری"
                   type="file"
                 />
-                <Button type="submit" color="primary" size="lg" block>
+                <Button
+                  style={{ marginTop: "70px" }}
+                  type="submit"
+                  color="primary"
+                  size="lg"
+                  block
+                >
                   {" "}
                   تایید
                 </Button>
+                <AppModal
+                  toggle={toggle}
+                  modal={modal}
+                  title={modalProps.modalTitle}
+                  body={modalProps.modalBody}
+                  handleSubmit={modalProps.modalOnSubmit}
+                />
               </Form>
             )}
           </Formik>
