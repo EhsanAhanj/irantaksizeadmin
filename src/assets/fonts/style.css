@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?iz2mi6');
+  src:  url('fonts/icomoon.eot?iz2mi6#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?iz2mi6') format('truetype'),
+    url('fonts/icomoon.woff?iz2mi6') format('woff'),
+    url('fonts/icomoon.svg?iz2mi6#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ic_education:before {
+  content: "\e900";
+}
+.icon-ic_entertainment:before {
+  content: "\e901";
+}
+.icon-ic_good:before {
+  content: "\e902";
+}
+.icon-ic_health:before {
+  content: "\e903";
+}
+.icon-ic_restaurant:before {
+  content: "\e904";
+}
+.icon-ic_travel:before {
+  content: "\e905";
+}
+.icon-ic_search:before {
+  content: "\e906";
+}
+.icon-ic_shopping_bag:before {
+  content: "\e907";
+}

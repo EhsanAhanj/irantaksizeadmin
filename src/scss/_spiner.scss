@@ -1,0 +1,59 @@
+.spin-container {
+}
+.spiner {
+  display: inline-block;
+  position: relative;
+  height: 15px;
+  width: 30px;
+  & > * {
+    position: absolute;
+    // top: 5px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #0074e4;
+    opacity: 0.6;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    &:nth-child(1) {
+      left: 0;
+      -webkit-animation: mymove 1.3s infinite ease-in;
+      animation: mymove 1.3s infinite ease-in;
+    }
+    &:nth-child(2) {
+      left: 12px;
+      -webkit-animation: mymove 1.3s 0.3s infinite ease-in;
+      animation: mymove 1.3s 0.3s infinite ease-in;
+    }
+    &:nth-child(3) {
+      left: 24px;
+      -webkit-animation: mymove 1.3s 0.6s infinite ease-in;
+      animation: mymove 1.3s 0.6s infinite ease-in;
+    }
+  }
+}
+
+@-webkit-keyframes mymove {
+  0%,
+  100%,
+  80% {
+    opacity: 0.6;
+    -webkit-transform: scale(0.4);
+  }
+  40% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes mymove {
+  0%,
+  100%,
+  80% {
+    opacity: 0.6;
+    transform: scale(0.4);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,53 @@
+.autocomplete-app {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.react-autosuggest__suggestions-container {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+  background-color: whitesmoke;
+}
+.react-autosuggest__suggestions-list {
+  list-style: none;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.autoContainer {
+  background-color: whitesmoke;
+  z-index: 3;
+}
+
+.autocomplete-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.autocomplete-option,
+span {
+  font-size: 12px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.autocomplete-image {
+  margin: 5px;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  overflow: hidden;
+}

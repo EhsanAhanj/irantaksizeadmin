@@ -1,0 +1,22 @@
+.auto-complete-suggestions > p {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  margin: 0;
+  height: 100px;
+  align-items: center;
+}
+.auto-complete-suggestions {
+  position: absolute;
+  z-index: 3;
+  width: 93%;
+  background-color: #e7f9ffde;
+  border-radius: 10px;
+}
+.auto-complete-suggestions-image {
+  height: 90px;
+  width: 90px;
+  background-color: #dbc5bc;
+  margin-right: auto;
+  margin-left: 30px;
+  border-radius: 45px;
+}
